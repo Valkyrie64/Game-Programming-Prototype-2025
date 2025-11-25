@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bullet;
     public Transform barrel;
     public bool topDown;
+    public int health;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector3(moveV * speed, 0, -moveH * speed);
         }
-        
         
         if (Input.GetKeyDown(KeyCode.E))
         {

@@ -7,11 +7,14 @@ public class EnemyMovement : MonoBehaviour
     private float speed = 8f;
 	private GameObject spawner;
     public SpawnerMovement spawnerScript;
+    public CameraMove cameraScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spawner = GameObject.Find("EnemySpawner");
         spawnerScript = spawner.GetComponent<SpawnerMovement>();
+        var cameraGO = GameObject.Find("CameraMover");
+        cameraScript = cameraGO.GetComponent<CameraMove>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
 
     void OnDisable()
     {
+        cameraScript.enemiesKilled++;
         spawnerScript.enemyList.Remove(gameObject);
     }
 }

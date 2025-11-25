@@ -9,21 +9,33 @@ public class SpawnerMovement : MonoBehaviour
     private float timer;
     private float spawnTime = 0f;
     public List<GameObject> enemyList;
+
+    public bool sideOn;
+
+    public CameraMove cameraScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        enemyList = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.up * (speed * Time.deltaTime));
+        switch (sideOn)
+        {
+            case true:
+                transform.Translate(Vector3.up * (speed * Time.deltaTime));
+                break;
+            case false:
+                transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+                break;
+        }
         timer += Time.deltaTime;
         if (timer >= spawnTime && enemyList.Count <= 4)
         {
-            Instantiate(enemyGO, transform.position, Quaternion.identity);
-            enemyList.Add(GameObject.FindGameObjectWithTag("Enemy"));
+            var enemyForList = Instantiate(enemyGO, transform.position, Quaternion.identity);
+            enemyList.Add(enemyForList);
             spawnTime = UnityEngine.Random.Range(0.8f, 1.8f);
             timer = 0;
         }
