@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class EnemyMovement : MonoBehaviour
 	private GameObject spawner;
     public SpawnerMovement spawnerScript;
     public CameraMove cameraScript;
+    public GameObject bullet;
+
+    private float rand;
+
+    private float timer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +27,13 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left * (speed * Time.deltaTime));
-        
+        timer += Time.deltaTime;
+        if (timer >= rand)
+        {
+            rand = Random.Range(1, 2.5f);
+            timer = 0;
+            Instantiate(bullet, transform.position, transform.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

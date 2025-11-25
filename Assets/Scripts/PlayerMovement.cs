@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +9,14 @@ public class PlayerMovement : MonoBehaviour
     public Transform barrel;
     public bool topDown;
     public int health;
+    public int scoreNumber;
+    public GameObject scoreGO;
+    public TextMeshProUGUI scoreText;
 
+    void Start()
+    {
+        scoreText = scoreGO.GetComponent<TextMeshProUGUI>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +34,22 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Instantiate(bullet, barrel.position, Quaternion.identity);
+        }
+        
+        scoreText.text = $"Score: {scoreNumber}";
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyBullet"))
+        {
+            health--;
+            Destroy(other.gameObject);
         }
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Floor
   - StopEnemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
