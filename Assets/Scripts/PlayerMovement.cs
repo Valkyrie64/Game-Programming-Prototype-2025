@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public int scoreNumber;
     public GameObject scoreGO;
     public TextMeshProUGUI scoreText;
+    public GameObject restartButton;
 
     void Start()
     {
@@ -40,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (health <= 0)
         {
+            restartButton.SetActive(true);
             Destroy(gameObject);
         }
     }

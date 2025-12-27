@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= rand)
         {
-            rand = Random.Range(1, 2.5f);
+            rand = Random.Range(1.5f, 2.5f);
             timer = 0;
             Instantiate(bullet, transform.position, transform.rotation);
         }
