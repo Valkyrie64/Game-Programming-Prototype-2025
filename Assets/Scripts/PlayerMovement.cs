@@ -12,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
     public int health;
     public int scoreNumber;
     public GameObject scoreGO;
+    public GameObject livesGO;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
     public GameObject restartButton;
 
     void Start()
     {
         scoreText = scoreGO.GetComponent<TextMeshProUGUI>();
+        livesText = livesGO.GetComponent<TextMeshProUGUI>();
     }
     // Update is called once per frame
     void Update()
@@ -39,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         scoreText.text = $"Score: {scoreNumber}";
+        livesText.text = $"Lives: {health}";
 
         if (health <= 0)
         {
